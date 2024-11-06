@@ -8,13 +8,14 @@
 ### 🟦🟥 Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget, dan jelaskan perbedaan dari keduanya. 
 
 > Stateless widget: 
-Stateless widget adalah sebuah class widget yang tidak mengubah dan tidak akan berubah statenya.
+Stateless widget adalah sebuah class widget yang tidak berubah (bersifat statis) dan tidak akan berubah statenya selama aplikasi berjalan.
 
 > Stateful widget:
-Stateful widget adalah sebuah class widget yang statenya dapat berubah.
+Stateful widget adalah sebuah class widget yang statenya dapat berubah salama aplikasi berjalan.
+
 
 > Perbedaan:
-Perbedaan dari kedua widget tersebut berada pada penggunaanya, yang di mana stateful dapat mengubah widget melalui passing argument, field, dan value agar tampilan terlihat lebih dinamis, sebagai contoh yaitu suatu tombol. Sementara stateless tidak dapat mengubah widget seperti stateful, sebagai contoh yaitu gambar atau text yang static. 
+Perbedaan dari kedua widget tersebut berada pada penggunaanya, yang di mana stateful dapat mengubah widget agar tampilan terlihat lebih dinamis, sebagai contoh yaitu suatu tombol. Sementara stateless tidak dapat mengubah widget seperti stateful, sebagai contoh yaitu gambar atau text yang static. 
 
 ### 🟦🟥 Sebutkan widget apa saja yang kamu gunakan pada proyek ini dan jelaskan fungsinya.
 
@@ -66,21 +67,21 @@ Saya mengunakkan widget built-in flutter dan widget buatan sendiri.
 
 ### 🟦🟥 Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
 
-setState() digunakan dalam Stateful Widget untuk membuat ulang atau memperbarui tampilan widget karena terjadinya perubahan. Oleh sebab itu, variabel yang dapat terdampak adalah build().
+setState() digunakan dalam Stateful Widget untuk membuat ulang atau memperbarui tampilan widget karena terjadinya perubaha pada state widget maupun data. Oleh sebab itu, variabel yang dapat terdampak adalah build() yang akan merender ulang tampilan terbaru.
 
 ### 🟦🟥 Jelaskan perbedaan antara const dengan final.
 
 > const:
-conts digunakan widget yang dimana valuenya sudah constant / tidak dapat berubah sebelum di run / di compile. 
+conts digunakan widget yang dimana valuenya sudah constant / tidak dapat berubah sebelum di run / di compile. const dapat di optimalisasi pd kompilasi, karena nilainya sudah pasti.
 
 > final:
-final hanya digunakan sekali dan value dari variabel tsb perlu diinisialiasi sebelum di run / di compile.
+final hanya digunakan sekali dan value dari variabel tsb perlu diinisialiasi sebelum di run / di compile. final mengunci variabel agar tidak dapat diubah setelah diinisialisasi.
 
 ### 🟦🟥 Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
 
 Sebelumnya, saya melakuan setup seperti biasanya yaitu: membuat project flutter baru > membuat repo baru > membuat webhook ke discord > kemudian menyambungkan directory ke repo.
 
-Flutter akan menyediakan template untuk project saya. Setelah itu saya memindahkan widget buatan seperti `MyHomePage`, `ItemCard`, `InfoCard`, `ItemHomePage` ke menu.dart, mengkonfigurasi perubahan, dan handling beberapa error setelah perubahan tersebut. `InfoCard` berfungsi untuk menampikan data user.`ItemHomePage` akan menjadi field untuk `ItemCard`. Kemudian `ItemCard` akan memunculkan SnackBar jika sebuah tombol di click. Kemudian, saya mengubah `MyHomePage` menjadi stateless widget.
+Flutter akan menyediakan template untuk project saya. Setelah itu saya memindahkan widget buatan seperti `MyHomePage`, `ItemCard`, `InfoCard`, `ItemHomePage` ke menu.dart, mengkonfigurasi perubahan, dan handling beberapa error setelah perubahan tersebut. `InfoCard` berfungsi untuk menampikan data user.`ItemHomePage` akan menjadi field untuk `ItemCard`. Kemudian `ItemCard` akan memunculkan SnackBar jika sebuah tombol di click. Kemudian, saya mengubah `MyHomePage` menjadi stateless widget karena halaman tidak perlu perubahan state.
 
 Untuk mengimplementasikan warna-warna yang berbeda untuk setiap tombol, saya menggunakan `Color.fromARGB(255,...,...,...))` untuk memilih warna secara spesifik 
 Berikut beberapa contoh implementasinya:
