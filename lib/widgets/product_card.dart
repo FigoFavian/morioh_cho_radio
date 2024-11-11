@@ -26,7 +26,7 @@ class ItemCard extends StatelessWidget {
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
 
-          if (item.name == "Tambah Product") {
+          if (item.name == "Tambah Produk") {
             Navigator.push(
               context,
               MaterialPageRoute(

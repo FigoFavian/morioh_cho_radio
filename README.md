@@ -98,3 +98,106 @@ color: const Color.fromARGB(255, 153, 155, 204),
 ...
 ```
 </details>
+
+<details>
+    <summary>Tugas 8 💻</summary>
+
+### 🟦🟥 Jelaskan bagaimana cara kamu mengimplementasikan checklist-checklist di atas.
+
+Pertama-tama saya menambah directory baru bernama screens yang berisi menu.dart dan productentry_form.dart. 
+File menu.dart digunakan untuk main page dan product_entry_form.dart digunakan utk halaman formulir penambahan item baru. 
+Kemudian saya mengimplementasikan ketiga elemen name, amount, description dan juga tombol save untuk menyimpan data di dalam 
+productentry_form.dart dengan menginisiasinya di ProductEntryFormPage. Untuk masing masing elemen terdapat validasi masing masing:
+a. name tidak boleh kosong, tidak boleh kurang dari 4 karakter, dan tidak boleh lebih dari 25 karakter.
+b. amount tidak boleh kosong, tidak boleh bilangan yang bukan integer, dan tidak boleh bernilai negatif
+c. description tidak boleh kosong, tidak boleh kurang dari 7 karakter, dan tidak boleh lebih dari 30 karakter.
+
+Kedua saya membuat directory bari bernama widgets yang berisi left_drawer.dart dan product_card.dart. Class itemHomePage dan class itemCard dari menu saya pindahkan ke product_cards.dart. Tujuannya adalah untuk memisahkan file dart yg dapat digunakan beberapa kali utk aplkasi .Untuk membuat drawer, saya membuat drawer yang akan tampil pada bagian kiri layar, maka file tsb dinamakan left_drawer.dart. Di dalam left drawer, saya membuat routing ke halaman utama dan halaman form product entry yaitu ke menu.dart dan product_entry_form.dart.
+
+Untuk tahap selanjutnya saya menambahkan fitur navigasi dari halaman utama menuju halaman form penambahan item baru. Pada halaman utama di menu.dart tombol Tambah Item akan memindahkan user ke halaman ProductEntryFormPage.
+
+Kemudian saya mengimplementasikan fitur pop up setelah user menekan tombol Save di halaman product_entry_form.dart.
+
+
+### 🟦🟥 Apa kegunaan const di Flutter? Jelaskan apa keuntungan ketika menggunakan const pada kode Flutter. Kapan sebaiknya kita menggunakan const, dan kapan sebaiknya tidak digunakan?
+
+const di Flutter digunakan untuk menentukan objek / value yang immutable pada kompilasi. maka value tsb tidak akan berubah selama kompilasi berjalan. Oleh karena itu keuntungannya berupa penghematan penggunaan memory karena value memory hanya dibentuk sekali saja. 
+
+const sebaiknya digunakan saat objek tidak akan berubah selama runtime (static). Sebaliknya jangan digunakan ketika objek harus diperbarui secara dinamis karena value tsb akan berpengaruh pada input user saat aplikasi berjalan.
+
+### 🟦🟥 Jelaskan dan bandingkan penggunaan Column dan Row pada Flutter. Berikan contoh implementasi dari masing-masing layout widget ini!
+
+Column dan Row merupakan widget layout di Flutter utk peletakan widget secara vertikal(Column) dan horizontal(Vertikal).
+
+Column:
+```dart
+child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Text('Product: $_name'),
+    Text('Amount: $_amount'),
+    Text('Description: $_description')
+    ],
+),
+```
+
+Row:
+```dart
+child: Row(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+        ...
+    ],
+),
+```
+
+### 🟦🟥 Sebutkan apa saja elemen input yang kamu gunakan pada halaman form yang kamu buat pada tugas kali ini. Apakah terdapat elemen input Flutter lain yang tidak kamu gunakan pada tugas ini? Jelaskan!
+
+Elemen yang saya gunakan adalah ElevatedButton untuk menyimpan data setelah pengguna mengisi form dan TextFormField untuk memasukan nama Product, Amount, dan Description.
+Elemen lain yang saya tidak gunakan seperti RadioButton, Slider, Checkbox, dll karena tidak perlu diimplementasika fitur fitur tersebut.
+
+### 🟦🟥 Bagaimana cara kamu mengatur tema (theme) dalam aplikasi Flutter agar aplikasi yang dibuat konsisten? Apakah kamu mengimplementasikan tema pada aplikasi yang kamu buat?
+
+Theme dapat diatur dengan menggunakan ThemeData pada widget MaterialApp agar warna, font, dan style konsisten di semua file. Saya mengimplementasikannya pada main.dart:
+
+```dart
+theme: ThemeData(
+    colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: Colors.blue,
+    ).copyWith(secondary: const Color.fromARGB(255, 163, 201, 92)),
+),
+```
+
+### 🟦🟥 Bagaimana cara kamu menangani navigasi dalam aplikasi dengan banyak halaman pada Flutter?
+
+Terdapat widget Navigator dan method pop, push, dan pushreplacement untuk menangani navigasi dlm aplikasi.
+
+Navigasi ke halaman form product entry (push)
+```dart
+Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => const ProductEntryFormPage(),
+    ),
+);
+```
+
+Navigasi ke halaman utama (pushreplacement)
+```dart
+Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+        builder: (context) => MyHomePage(),
+    ),
+);
+```
+
+Menutup / kembali ke halaman sebelumnya (pop)
+```dart
+onPressed: () {
+    Navigator.pop(context);
+    _formKey.currentState!.reset();
+},
+```
+
+</details>

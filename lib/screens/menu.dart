@@ -8,8 +8,7 @@ class MyHomePage extends StatelessWidget {
   final String className = 'PBP F'; // Kelas
 
   final List<ItemHomepage> items = [
-    ItemHomepage(
-        "Lihat Daftar Produk", Icons.production_quantity_limits, Color.fromARGB(255, 20, 29, 73)),
+    ItemHomepage("Lihat Daftar Produk", Icons.production_quantity_limits, Color.fromARGB(255, 20, 29, 73)),
     ItemHomepage("Tambah Produk", Icons.add, Color.fromARGB(255, 45, 67, 128)),
     ItemHomepage("Logout", Icons.logout, Color.fromARGB(255, 59, 67, 105)),
   ];
