@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:morioh_cho_radio/menu.dart';
+import 'package:morioh_cho_radio/screens/menu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.yellow,
+          primarySwatch: Colors.blue,
         ).copyWith(secondary: const Color.fromARGB(255, 163, 201, 92)),
       ),
       home: MyHomePage(),

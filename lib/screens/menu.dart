@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-// import 'package:google_fonts/google_fonts.dart';
-
+import 'package:morioh_cho_radio/widgets/left_drawer.dart';
+import 'package:morioh_cho_radio/widgets/product_card.dart';
 class MyHomePage extends StatelessWidget {
-    MyHomePage({super.key});
-    final String npm = '2306241764'; // NPM
-    final String name = 'Figo Favian Ragazo'; // Nama
-    final String className = 'PBP F'; // Kelas
-    
-    final List<ItemHomepage> items = [
-        ItemHomepage("Lihat Daftar Produk", Icons.mood, Color.fromARGB(255,20,29,73)), 
-        ItemHomepage("Tambah Produk", Icons.add, Color.fromARGB(255,45,67,128)), 
-        ItemHomepage("Logout", Icons.logout, Color.fromARGB(255,59,67,105)), 
-    ];
+  MyHomePage({super.key});
+  final String npm = '2306241764'; // NPM
+  final String name = 'Figo Favian Ragazo'; // Nama
+  final String className = 'PBP F'; // Kelas
+
+  final List<ItemHomepage> items = [
+    ItemHomepage(
+        "Lihat Daftar Produk", Icons.production_quantity_limits, Color.fromARGB(255, 20, 29, 73)),
+    ItemHomepage("Tambah Produk", Icons.add, Color.fromARGB(255, 45, 67, 128)),
+    ItemHomepage("Logout", Icons.logout, Color.fromARGB(255, 59, 67, 105)),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255,233,231,154),
+      backgroundColor: const Color.fromARGB(255, 233, 231, 154),
       appBar: AppBar(
         title: const Text(
           'Morioh Cho Radio',
@@ -27,6 +28,9 @@ class MyHomePage extends StatelessWidget {
         ),
         backgroundColor: const Color.fromARGB(255, 65, 133, 137),
       ),
+
+      drawer: const LeftDrawer(),
+
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -40,9 +44,11 @@ class MyHomePage extends StatelessWidget {
                 InfoCard(title: 'Class', content: className),
               ],
             ),
+
             const SizedBox(height: 16.0),
             Center(
               child: Column(
+
                 children: [
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
@@ -94,7 +100,8 @@ class InfoCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold, color: Colors.white),
             ),
             const SizedBox(height: 8.0),
             Text(content, style: const TextStyle(color: Colors.white)),
@@ -105,54 +112,3 @@ class InfoCard extends StatelessWidget {
   }
 }
 
-class ItemHomepage {
-    final String name;
-    final IconData icon;
-    final Color color;
-
-    ItemHomepage(this.name, this.icon, this.color);
-}
-
-class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
-  
-  const ItemCard(this.item, {super.key}); 
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: item.color,
-      borderRadius: BorderRadius.circular(12),
-      child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}!"))
-            );
-        },
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  item.icon,
-                  color: const Color.fromARGB(255, 255, 255, 255),
-                  size: 30.0,
-                ),
-                const Padding(padding: EdgeInsets.all(3)),
-                Text(
-                  item.name,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
