@@ -199,5 +199,47 @@ onPressed: () {
     _formKey.currentState!.reset();
 },
 ```
+</details>
 
+<details>
+    <summary>Tugas 9 💻</summary>
+
+### 🟦🟥 Jelaskan mengapa kita perlu membuat model untuk melakukan pengambilan ataupun pengiriman data JSON? Apakah akan terjadi error jika kita tidak membuat model terlebih dahulu?
+
+Model dalam Flutter berguna untuk merepresentasikan struktur data JSON secara terstruktur, mempermudah parsing, validasi tipe data, dan penanganan perubahan struktur JSON. Tanpa model, penggunaan langsung Map<String, dynamic> dapat terjadi error dan memerlukan penyesuaian manual saat terjadi perubahan struktur JSON
+
+### 🟦🟥 Jelaskan fungsi dari library http yang sudah kamu implementasikan pada tugas ini
+
+Library http berfungsi utk melakukan request HTTP seperti GET atau POST ke web service Django saya. Library dapat fetch data dari server dan pengiriman data ke server, sebagai penghubung antara Flutter dan Django
+
+### 🟦🟥 Jelaskan fungsi dari CookieRequest dan jelaskan mengapa instance CookieRequest perlu untuk dibagikan ke semua komponen di aplikasi Flutter.
+
+CookieRequest digunakan untuk menangani session berbasis cookies, memastikan autentikasi yang konsisten di seluruh aplikasi tanpa autentikasi ulang. Membagikan satu instance CookieRequest ke semua komponen memastikan data session aman dan konsisten.
+
+### 🟦🟥 Jelaskan mekanisme pengiriman data mulai dari input hingga dapat ditampilkan pada Flutter.
+
+User memasukkan data melalui form Flutter kemudian dikirim ke server dalam format JSON menggunakan http atau CookieRequest. Server memproses data dan mengembalikan response yang kemudian dimapping ke model dart untuk ditampilkan di flutter.
+
+### 🟦🟥 Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
+
+Login: Data credentials dikirim ke server untuk verification dengan library http POST atau CookieRequest. Jika valid, server mengembalikan status sukses, dan user diarahkan ke halaman utama.
+
+Register: Serupa dengan login, user baru mengirim data credentials ke server untuk dibuatkan akun.  data tersebut dikirim ke server menggunakan library http POST atau CookieRequest. Jika verifikasi berhasil, user diarahkan ke halaman login.
+
+Logout: Dimulai dari saat user mentrigger tombol logout dari flutter. Maka akan membuat request dan request tsb dikirim ke server untuk menghapus session dan mengembalikan respons ke flutter. Jika berhasil, user diarahkan ke halaman login.
+
+### 🟦🟥 Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
+
+Saya memastikan bahwa Djanjo sudah berjalan dengan baik
+
+Untuk mengimplementasikan fitur register, saya melakukan setup authentication pada django saya dengan membuat app baru bernama 'authentication' dan mengubah settings.py sesuai setup. Kemudian saya mengimplementasikan fungsi register() di views.py utk mendapatkan data JSON dari request, dan juga mapping di urls.py utk register. kemudian pada projek flutter, buat register.dart untuk menangani halaman registrasi di flutternya. 
+
+Serupa dgn fitur register, untuk setup fitur login prosesnya juga sama dengan pengimplementasian kode yang berbeda. 
+
+Untuk model baru sesuai dengan django, saya menggunakan website bernama quicktype dan json pada projek django saya. Copy raw json tersebut dan menggunakan quicktype, kemudian saya mengimplementasikan hal hal yang perlu dilakukan untuk membuat model baru. model baru ini dimasukkan ke cd lib/models dan paste ke product_entry.dart.
+
+Kemudian saya membuat page baru yg memperlihatkan list daftar produk yg sudah ditambah. 
+Pengimplementasian terdapat di list_productentry.dart
+
+Setelah itu, saya membuat fitur dimana setelah daftar produk di add, maka produk tersebut bisa diclick lagi untuk memperlihatkan detail dari produk. pengimplementasian tsb terdapat di product_details.dart
 </details>

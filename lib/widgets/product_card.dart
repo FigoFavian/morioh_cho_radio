@@ -1,38 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:morioh_cho_radio/screens/productentry_form.dart';
+import 'package:morioh_cho_radio/screens/list_productentry.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:morioh_cho_radio/screens/login.dart';
 
 class ItemHomepage {
-  final String name;
-  final IconData icon;
-  final Color color;
+    final String name;
+    final IconData icon;
+    final Color color;
 
-  ItemHomepage(this.name, this.icon, this.color);
+    ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
-  final ItemHomepage item;
 
-  const ItemCard(this.item, {super.key});
+  final ItemHomepage item;
+  const ItemCard(this.item, {super.key}); 
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
-        onTap: () {
+        onTap: () async {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
-
+            ..showSnackBar(
+              SnackBar(content: Text("Kamu telah menekan tombol ${item.name}"))
+            );
           if (item.name == "Tambah Produk") {
             Navigator.push(
-              context,
-              MaterialPageRoute(
+              context, MaterialPageRoute(
                 builder: (context) => const ProductEntryFormPage(),
               ),
             );
+          }
+          else if (item.name == "Lihat Daftar Produk") {
+              Navigator.push(context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProductEntryPage()
+                  ),
+              );
+          }
+          else if (item.name == "Logout") {
+              final response = await request.logout("http://localhost:8000/auth/logout/");
+              String message = response["message"];
+              if (context.mounted) {
+                  if (response['status']) {
+                      String uname = response["username"];
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("$message Farewell, $uname."),
+                      ));
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LoginPage()),
+                      );
+                  } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text(message),
+                          ),
+                      );
+                  }
+              }
           }
         },
         child: Container(
@@ -43,15 +76,14 @@ class ItemCard extends StatelessWidget {
               children: [
                 Icon(
                   item.icon,
-                  color: const Color.fromARGB(255, 255, 255, 255),
+                  color: const Color.fromARGB(255, 255, 247, 211),
                   size: 30.0,
                 ),
                 const Padding(padding: EdgeInsets.all(3)),
                 Text(
                   item.name,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 255, 255, 255)),
+                  style: const TextStyle(color: Color.fromARGB(255, 255, 247, 211)),
                 ),
               ],
             ),
@@ -60,4 +92,5 @@ class ItemCard extends StatelessWidget {
       ),
     );
   }
+  
 }

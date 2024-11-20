@@ -21,7 +21,7 @@ class MyHomePage extends StatelessWidget {
         title: const Text(
           'Morioh Cho Radio',
           style: TextStyle(
-            color: Colors.white,
+            color: Color.fromARGB(255, 255, 247, 211),
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -100,7 +100,7 @@ class InfoCard extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold, color: Colors.white),
+                  fontWeight: FontWeight.bold, color: Color.fromARGB(255, 255, 247, 211)),
             ),
             const SizedBox(height: 8.0),
             Text(content, style: const TextStyle(color: Colors.white)),

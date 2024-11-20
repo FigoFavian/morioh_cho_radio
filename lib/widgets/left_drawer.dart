@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:morioh_cho_radio/screens/menu.dart';
 import 'package:morioh_cho_radio/screens/productentry_form.dart';
+import 'package:morioh_cho_radio/screens/list_productentry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -23,7 +24,7 @@ class LeftDrawer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 255, 247, 211),
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(8)),
@@ -33,12 +34,28 @@ class LeftDrawer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 255, 247, 211),
                   ),
                 ),
               ],
             ),
           ),
+          
+          ListTile(
+            leading: const Icon(Icons.home_outlined, color: Colors.white),
+            title: const Text(
+              'Daftar Produk',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductEntryPage()),
+              );
+            },
+          ),
+
           ListTile(
             leading: const Icon(Icons.home_outlined, color: Colors.white),
             title: const Text(
@@ -54,6 +71,7 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+
           ListTile(
             leading:
                 const Icon(Icons.production_quantity_limits, color: Colors.white),
